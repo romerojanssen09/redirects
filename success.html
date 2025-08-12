@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Success - Recovery PH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background: #f5f5f5; 
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            max-width: 400px; 
+            margin: 0 auto; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success { color: #4CAF50; font-size: 24px; margin-bottom: 20px; }
+        button { 
+            background: #141414; 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin: 10px; 
+            width: 200px;
+        }
+        .loading { color: #666; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success">✅ Payment Successful!</div>
+        <p>Your Premium Protection subscription is now active!</p>
+        <div class="loading">Redirecting to app...</div>
+        <button onclick="openApp()">Open Recovery PH App</button>
+        <p style="font-size: 14px; color: #666; margin-top: 30px;">
+            If the app doesn't open automatically, tap the button above or open Recovery PH manually.
+        </p>
+    </div>
+
+    <script>
+        function openApp() {
+            // Try to open the app with custom URL scheme
+            window.location.href = "recoveryph://payment/success";
+        }
+        
+        // Auto-try to open app when page loads
+        window.onload = function() {
+            // Wait 2 seconds then try to open app
+            setTimeout(function() {
+                openApp();
+            }, 2000);
+        };
+    </script>
+</body>
+</html>
