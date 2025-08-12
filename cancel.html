@@ -1,58 +1,368 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Payment Cancelled - Recovery PH</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Recovery PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            padding: 50px; 
-            background: #f5f5f5; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 10px; 
-            max-width: 400px; 
-            margin: 0 auto; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
-        .cancel { color: #f44336; font-size: 24px; margin-bottom: 20px; }
-        button { 
-            background: #141414; 
-            color: white; 
-            padding: 15px 30px; 
-            border: none; 
-            border-radius: 8px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            margin: 10px; 
-            width: 200px;
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f44336, #d32f2f);
+        }
+
+        .logo-container {
+            width: 75px;
+            height: 75px;
+            background: #F5F5F5;
+            border-radius: 40px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-container::after {
+            content: '🛡️';
+            font-size: 32px;
+        }
+
+        .app-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #141414;
+            margin-bottom: 8px;
+        }
+
+        .cancel-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            border-radius: 50%;
+            margin: 30px auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: cancelShake 0.5s ease-in-out;
+        }
+
+        .cancel-icon i {
+            color: white;
+            font-size: 36px;
+        }
+
+        @keyframes cancelShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .cancel-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #f44336;
+            margin-bottom: 12px;
+        }
+
+        .cancel-message {
+            font-size: 16px;
+            color: #6E6E6E;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .info-box {
+            background: #F5F5F5;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #141414;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-title i {
+            margin-right: 8px;
+            color: #f44336;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: #6E6E6E;
+            line-height: 1.5;
+        }
+
+        .features-preview {
+            background: #E8F5E8;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .features-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #141414;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item i {
+            color: #4CAF50;
+            margin-right: 10px;
+            width: 14px;
+        }
+
+        .btn-primary {
+            background: #141414;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(20, 20, 20, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #4CAF50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #6E6E6E;
+            margin-top: 25px;
+            line-height: 1.4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .cancel-title {
+                font-size: 24px;
+            }
+            
+            .cancel-message {
+                font-size: 15px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 25px 15px;
+            }
+            
+            .cancel-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .cancel-icon i {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="cancel">❌ Payment Cancelled</div>
-        <p>No worries! You can try subscribing again anytime.</p>
-        <button onclick="openApp()">Return to Recovery PH</button>
-        <p style="font-size: 14px; color: #666; margin-top: 30px;">
-            Tap the button above to return to the app.
+        <!-- App Logo -->
+        <div class="logo-container"></div>
+        <div class="app-title">Recovery PH</div>
+        
+        <!-- Cancel Icon -->
+        <div class="cancel-icon">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <!-- Cancel Message -->
+        <h1 class="cancel-title">Payment Cancelled</h1>
+        <p class="cancel-message">
+            No worries! Your payment was cancelled and no charges were made.
+        </p>
+        
+        <!-- Info Box -->
+        <div class="info-box">
+            <div class="info-title">
+                <i class="fas fa-info-circle"></i>
+                What happened?
+            </div>
+            <div class="info-text">
+                You chose to cancel the payment process. You can try subscribing again anytime to unlock Premium Protection features.
+            </div>
+        </div>
+        
+        <!-- Features Preview -->
+        <div class="features-preview">
+            <div class="features-title">Premium Features You're Missing:</div>
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Advanced gambling site detection</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-eye"></i>
+                <span>Real-time URL monitoring</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-lock"></i>
+                <span>Emergency lockdown mode</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-headset"></i>
+                <span>24/7 support access</span>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <button class="btn-primary" onclick="openApp()">
+            <i class="fas fa-mobile-alt" style="margin-right: 8px;"></i>
+            Return to Recovery PH
+        </button>
+        
+        <button class="btn-secondary" onclick="tryAgain()">
+            <i class="fas fa-credit-card" style="margin-right: 8px;"></i>
+            Try Payment Again
+        </button>
+        
+        <!-- Footer -->
+        <p class="footer-text">
+            Questions about Premium Protection? Contact our support team anytime for assistance.
         </p>
     </div>
 
     <script>
         function openApp() {
+            // Try to open the app with custom URL scheme
             window.location.href = "recoveryph://payment/cancel";
+            
+            // Show feedback
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>Opening App...';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 3000);
         }
         
-        // Auto-try to open app after 3 seconds
-        window.onload = function() {
+        function tryAgain() {
+            // Redirect back to app to try payment again
+            window.location.href = "recoveryph://payment/retry";
+            
+            // Fallback: just open the app
+            setTimeout(() => {
+                openApp();
+            }, 1000);
+        }
+        
+        // Auto-redirect to app after delay
+        window.addEventListener('load', function() {
             setTimeout(function() {
                 openApp();
             }, 3000);
-        };
+        });
+        
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cancel icon on load
+            const cancelIcon = document.querySelector('.cancel-icon');
+            cancelIcon.style.transform = 'scale(0)';
+            setTimeout(() => {
+                cancelIcon.style.transition = 'transform 0.5s ease-out';
+                cancelIcon.style.transform = 'scale(1)';
+            }, 500);
+        });
     </script>
 </body>
 </html>
